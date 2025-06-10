@@ -1,0 +1,29 @@
+services:
+  app:
+    image: sanjeet990/astroluma:latest
+    container_name: astroluma
+    environment:
+      PORT: 8000
+      NODE_ENV: production
+      SECRET_KEY: a2c5f9a8b2d7e1a7f2c9c8d9b5f7a3d5
+      MONGODB_URI: mongodb://localhost:27017/astroluma
+    volumes:
+      - ${app_data}/astroluma-app:/app/storage/uploads
+    depends_on:
+      - mongodb
+    restart: always
+    network_mode: host
+
+  mongodb:
+    image: mongo:6.0
+    container_name: mongodb
+    volumes:
+      - ${app_data}/astroluma-db:/data/db
+    restart: always
+    network_mode: host
+
+volumes:
+  mongo_data:
+    driver: local
+  uploads_data:
+    driver: local
