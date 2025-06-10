@@ -1,4 +1,15 @@
 services:
+  homepage:
+    image: ghcr.io/gethomepage/homepage:latest
+    container_name: homepage
+    ports:
+      - 3000:3000
+    volumes:
+      - ${app_data}/homepage:/app/config # Make sure your local config directory exists
+      - /var/run/docker.sock:/var/run/docker.sock # (optional) For docker integrations
+    environment:
+      HOMEPAGE_ALLOWED_HOSTS: gethomepage.dev # required, may need port. See gethomepage.dev/installation/#homepage_allowed_hosts
+      
   app:
     image: sanjeet990/astroluma:latest
     container_name: astroluma
@@ -27,14 +38,4 @@ volumes:
     driver: local
   uploads_data:
     driver: local
-services:
-  homepage:
-    image: ghcr.io/gethomepage/homepage:latest
-    container_name: homepage
-    ports:
-      - 3000:3000
-    volumes:
-      - ${app_data}/homepage:/app/config # Make sure your local config directory exists
-      - /var/run/docker.sock:/var/run/docker.sock # (optional) For docker integrations
-    environment:
-      HOMEPAGE_ALLOWED_HOSTS: gethomepage.dev # required, may need port. See gethomepage.dev/installation/#homepage_allowed_hosts
+
