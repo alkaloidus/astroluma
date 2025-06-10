@@ -4,8 +4,8 @@ services:
     image: lscr.io/linuxserver/heimdall:latest
     container_name: heimdall
     environment:
-      - PGID=0
-      - PUID=0
+      - PGID=1000
+      - PUID=1000
       - TZ=Asia/Yekaterinburg
     volumes:
       - ${app_data}/heimdall/config:/config
