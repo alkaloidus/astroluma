@@ -3,7 +3,7 @@ services:
     image: sanjeet990/astroluma:latest
     container_name: astroluma
     environment:
-      PORT: 3000
+      PORT: 4000
       NODE_ENV: production
       SECRET_KEY: a2c5f9a8b2d7e1a7f2c9c8d9b5f7a3d5
       MONGODB_URI: mongodb://localhost:27017/astroluma
@@ -27,3 +27,14 @@ volumes:
     driver: local
   uploads_data:
     driver: local
+services:
+  homepage:
+    image: ghcr.io/gethomepage/homepage:latest
+    container_name: homepage
+    ports:
+      - 3000:3000
+    volumes:
+      - ${app_data}/homepage:/app/config # Make sure your local config directory exists
+      - /var/run/docker.sock:/var/run/docker.sock # (optional) For docker integrations
+    environment:
+      HOMEPAGE_ALLOWED_HOSTS: gethomepage.dev # required, may need port. See gethomepage.dev/installation/#homepage_allowed_hosts
