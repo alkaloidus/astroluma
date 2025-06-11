@@ -8,7 +8,7 @@ services:
       - PUID=1000
       - TZ=Asia/Yekaterinburg
     volumes:
-      - opt/tech/heimdall/config:/config
+      - /opt/tech/heimdall/config:/config
     ports:
       - 80:80
       - 443:443
