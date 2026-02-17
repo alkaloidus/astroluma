@@ -7,11 +7,12 @@ services:
       - TZ=$tzone # your TZ
       - PUID=${puid}
       - GUID=${guid}
+      - ALLOW_INTERNAL_REQUESTS=true #optional
     volumes:
       - ${app_data}/heimdall:/config
     ports:
       - 8090:80
-      # - 443:443
+      - 443:443
     restart: unless-stopped
 
   homepage:
