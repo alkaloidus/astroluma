@@ -9,7 +9,7 @@ services:
       - PGID=1000
       - ALLOW_INTERNAL_REQUESTS=true #optional
     volumes:
-      - ${app_data}/heimdall:/config
+      - heimdall_data:/config
     ports:
       - 8090:80
     restart: unless-stopped
@@ -58,5 +58,7 @@ volumes:
   mongo_data:
     driver: local
   uploads_data:
+    driver: local
+  heimdall_data:  # Declared here
     driver: local
 
