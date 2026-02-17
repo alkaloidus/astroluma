@@ -50,7 +50,7 @@ services:
     image: mongo:6.0
     container_name: mongodb
     volumes:
-      - ${app_data}/astroluma-db:/data/db
+      - mongo_data:/data/db
     restart: always
     network_mode: host
 
