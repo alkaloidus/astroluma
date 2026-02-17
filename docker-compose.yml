@@ -12,7 +12,6 @@ services:
       - ${app_data}/heimdall:/config
     ports:
       - 8090:80
-      - 443:443
     restart: unless-stopped
 
   homepage:
