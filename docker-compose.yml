@@ -38,7 +38,7 @@ services:
       - PORT=4000
       - NODE_ENV=production
       - SECRET_KEY=a2c5f9a8b2d7e1a7f2c9c8d9b5f7a3d5
-      - MONGODB_URI=mongodb://localhost:27017/astroluma
+      - MONGODB_URI=mongodb://mongodb:27017/astroluma
     volumes:
       - ${app_data}/astroluma-app:/app/storage/uploads
     depends_on:
