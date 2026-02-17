@@ -4,9 +4,9 @@ services:
     image: lscr.io/linuxserver/heimdall:latest
     container_name: heimdall
     environment:
-      - TZ=$tzone # your TZ
-      - PUID=${puid}
-      - GUID=${guid}
+      - TZ=$tzone # your TZ- 
+      - PUID=1000
+      - PGID=1000
       - ALLOW_INTERNAL_REQUESTS=true #optional
     volumes:
       - ${app_data}/heimdall:/config
