@@ -44,11 +44,13 @@ services:
     depends_on:
       - mongodb
     restart: always
-    network_mode: host
+   # network_mode: host
 
   mongodb:
     image: mongo:6.0
     container_name: mongodb
+    ports:
+      - "27017:27017"
     volumes:
       - mongo_data:/data/db
     restart: always
