@@ -4,16 +4,16 @@ services:
     image: lscr.io/linuxserver/heimdall:latest
     container_name: heimdall
     environment:
-      - PGID=1000
-      - PUID=1000
-      - TZ=Asia/Yekaterinburg
+      - TZ=$tzone # your TZ
+      - PUID=${puid}
+      - GUID=${guid}
     volumes:
       - ${app_data}/heimdall:/config
     ports:
       - 8080:80
       # - 443:443
     restart: unless-stopped
-    
+
   homepage:
     image: ghcr.io/gethomepage/homepage:latest
     container_name: homepage
@@ -23,16 +23,22 @@ services:
       - ${app_data}/homepage:/app/config # Make sure your local config directory exists
       - /var/run/docker.sock:/var/run/docker.sock # (optional) For docker integrations
     environment:
+      - TZ=$tzone # your TZ
+      - PUID=${puid}
+      - GUID=${guid}
       HOMEPAGE_ALLOWED_HOSTS: 10.0.10.24:3000 # required, may need port. See gethomepage.dev/installation/#homepage_allowed_hosts
-      
-  app:
+
+  astroluma:
     image: sanjeet990/astroluma:latest
     container_name: astroluma
     environment:
-      PORT: 4000
-      NODE_ENV: production
-      SECRET_KEY: a2c5f9a8b2d7e1a7f2c9c8d9b5f7a3d5
-      MONGODB_URI: mongodb://localhost:27017/astroluma
+      - TZ=$tzone # your TZ
+      - PUID=${puid}
+      - GUID=${guid}
+      - PORT=4000
+      - NODE_ENV=production
+      - SECRET_KEY=a2c5f9a8b2d7e1a7f2c9c8d9b5f7a3d5
+      - MONGODB_URI=mongodb://localhost:27017/astroluma
     volumes:
       - ${app_data}/astroluma-app:/app/storage/uploads
     depends_on:
