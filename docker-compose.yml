@@ -26,7 +26,7 @@ services:
       - TZ=$tzone # your TZ
       - PUID=${puid}
       - GUID=${guid}
-      HOMEPAGE_ALLOWED_HOSTS: 10.0.10.24:3000 # required, may need port. See gethomepage.dev/installation/#homepage_allowed_hosts
+      - HOMEPAGE_ALLOWED_HOSTS=10.0.10.24:3000 # required, may need port. See gethomepage.dev/installation/#homepage_allowed_hosts
 
   astroluma:
     image: sanjeet990/astroluma:latest
